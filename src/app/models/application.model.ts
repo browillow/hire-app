@@ -3,7 +3,7 @@ import { Availability } from '../enums/availability.enum';
 import { Question } from './question.model';
 
 export class Application {
-    public id: string;
+    public id: number;
     public name: string;
     public position: string;
     public applied: string;

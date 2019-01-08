@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Application } from '../../models/application.model';
+import { ApplicationService } from '../../services/application.service';
 
 @Component({
   selector: 'app-dashboard-view',
@@ -7,9 +9,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class DashboardViewComponent implements OnInit {
 
-  constructor() { }
+  applications: Application[] = [];
+
+  constructor( private applicationService: ApplicationService) { }
 
   ngOnInit() {
+    this.applicationService.getApplications().subscribe(applications => this.applications = applications)
   }
 
 }
