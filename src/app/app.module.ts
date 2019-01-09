@@ -2,6 +2,11 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpModule } from '@angular/http';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+
+import {MatDividerModule} from '@angular/material/divider';
+import {MatCardModule} from '@angular/material/card';
+import {MatButtonModule} from '@angular/material/button';
 
 import { AppRoutingModule } from './app-routing.module';
 
@@ -23,6 +28,10 @@ import { ApplicationCardComponent } from './components/application-card/applicat
     BrowserModule,
     HttpModule,
     HttpClientModule,
+    BrowserAnimationsModule,
+    MatDividerModule,
+    MatCardModule,
+    MatButtonModule,
     AppRoutingModule
   ],
   providers: [

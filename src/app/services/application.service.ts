@@ -2,11 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Application } from '../models/application.model';
 import { Observable } from 'rxjs';
+import { map, tap} from 'rxjs/operators';
 
 @Injectable()
 export class ApplicationService {
 
     private baseUrl: string;
+    private applications: Application[] = [];
 
     constructor(private http: HttpClient) {
         let port = (location.port !== "") ? `:${location.port}` : '';
@@ -14,7 +16,20 @@ export class ApplicationService {
     }
 
     getApplications() {
-        return this.http.get<Application[]>(`${this.baseUrl}/assets/applications.json`);
+        return this.http.get<Application[]>(`${this.baseUrl}/assets/applications.json`)
+            .pipe(
+                map(applications => this.rememberBookmarks(applications)),
+                tap(applications => this.cacheApplications(applications))
+            );
+    }
+
+    rememberBookmarks(applications: Application[]): Application[] {
+        // TODO: Look in local storage for the ids of applications that have been bookmarked
+        return applications;
+    }
+
+    cacheApplications(applications: Application[]) {
+        this.applications = applications;
     }
 
     getApplication(id: number) {
@@ -33,5 +48,7 @@ export class ApplicationService {
         return appObservable;
     }
 
-    
+    bookmarkApplication(id: number) {
+        // TODO: Save application id in bookmarks collection in local storage
+    }
 }

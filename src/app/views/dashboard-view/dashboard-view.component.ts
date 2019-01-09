@@ -14,7 +14,7 @@ export class DashboardViewComponent implements OnInit {
   constructor( private applicationService: ApplicationService) { }
 
   ngOnInit() {
-    this.applicationService.getApplications().subscribe(applications => this.applications = applications)
+    this.applicationService.getApplications().subscribe(applications => this.applications = applications);
   }
 
 }

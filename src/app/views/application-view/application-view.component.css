@@ -1,0 +1,61 @@
+.ApplicationView-dashboardButton {
+    width: 100%;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+}
+
+.ApplicationView-cardContainer {
+    margin-top: 20px;
+    width: 100%;
+}
+
+.ApplicationView-cardName {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    margin-top: 10px;
+    font-size: 25px;
+    margin-bottom: 20px;
+}
+
+.ApplicationView-cardInfoRow {
+    display: flex;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.ApplicationView-cardInfoRow > div:last-child {
+    flex-grow: 1;
+    text-align: right;
+}
+
+.ApplicationView-cardInfoSectionTitle {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    font-size: 18px;
+    margin-top: 20px;
+    margin-bottom: 8px;
+}
+
+.ApplicationView-cardAvailabilityRow, .ApplicationView-cardQuestionRow {
+    width: 100%;
+}
+
+.ApplicationView-cardQuestion {
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+.ApplicationView-cardQuestion > div {
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+
+.ApplicationView-cardQuestionAnswer {
+    color: green;
+}

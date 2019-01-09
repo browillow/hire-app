@@ -1,5 +1,53 @@
-<div>
-  <div>{{application.name}}</div>
-  <div>{{application.position}}</div>
-  <div>{{application.applied}}</div>
+<div class="View ApplicationView">
+    <div class="ApplicationView-dashboardButton">
+        <button mat-raised-button color="primary" (click)="goToDashboard()">Back to Dashboard</button>
+    </div>
+    <div class="ApplicationView-cardContainer">
+        <mat-card class="ApplicationView-card" *ngIf="application">
+            <div class="ApplicationView-cardContent">
+              <div class="ApplicationView-cardName">
+                <div>{{application.name}}</div>
+              </div>
+              <mat-divider [inset]="true"></mat-divider>
+              <div class="ApplicationView-cardInfoRow">
+                <div>Position:</div>
+                <div>{{application.position}}</div>
+              </div>
+              <mat-divider [inset]="true"></mat-divider>
+              <div class="ApplicationView-cardInfoRow">
+                <div>Experience:</div>
+                <div>{{experience}}</div>
+              </div>
+              <mat-divider [inset]="true"></mat-divider>
+              <div class="ApplicationView-cardInfoRow">
+                <div>Date Applied:</div>
+                <div>{{application.applied}}</div>
+              </div>
+              <mat-divider [inset]="true"></mat-divider>
+              <div class="ApplicationView-cardInfoSectionTitle">Availability</div>
+              <mat-divider [inset]="true"></mat-divider>
+              <div class="ApplicationView-cardAvailabilityRow" *ngFor="let entry of availability">
+                  <div class="ApplicationView-cardInfoRow">
+                      <div>{{entry.day}}:</div>
+                      <div>{{entry.availability}}</div>
+                  </div>
+              </div>
+              <mat-divider [inset]="true"></mat-divider>
+              <div class="ApplicationView-cardInfoSectionTitle">Questions</div>
+            </div>
+            <div class="ApplicationView-cardQuestionRow">
+                <mat-divider [inset]="true"></mat-divider>
+                <div class="ApplicationView-cardQuestion" *ngFor="let question of application.questions">
+                  <div class="ApplicationView-cardQuestionText">{{question.text}}</div>
+                  <div class="ApplicationView-cardQuestionAnswer">{{question.answer}}</div>
+                </div>
+            </div>
+        </mat-card>
+    </div>
+    
+
+    
 </div>
+
+
+
