@@ -1,0 +1,44 @@
+.ApplicationCard {
+    color: white;
+    background-color: #3667b7;
+}
+
+.ApplicationCard:hover {
+    cursor: pointer;
+    background-color: #285397;
+}
+
+.ApplicationCard > .mat-divider {
+    border-color: white;
+}
+
+.ApplicationCard-topRow {
+    display: flex;
+    margin-bottom: 10px;
+}
+
+.ApplicationCard-topRow > div:first-child {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    flex-grow: 1;
+}
+
+.ApplicationCard-bookmarkContainer {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    min-width: 50px;
+    color: #5fb7ce;
+}
+
+.ApplicationCard-bottomRow {
+    display: flex;
+    margin-top: 10px;
+}
+
+.ApplicationCard-bottomRow > div:last-child {
+    flex-grow: 1;
+    text-align: right;
+}

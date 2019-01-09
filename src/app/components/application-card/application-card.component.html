@@ -1,5 +1,13 @@
-<div (click)="viewApplication()">
-  <div>{{application.name}}</div>
-  <div>{{application.position}}</div>
-  <div>{{application.applied}}</div>
-</div>
+<mat-card (click)="viewApplication()" class="ApplicationCard">
+  <div class="ApplicationCard-topRow">
+    <div>{{application.name}}</div>
+    <div class="ApplicationCard-bookmarkContainer">
+        <mat-icon>favorite_border</mat-icon>
+    </div>
+  </div>
+  <mat-divider [inset]="true" [style.backgroundColor]></mat-divider>
+  <div class="ApplicationCard-bottomRow">
+    <div>{{application.position}}</div>
+    <div>{{application.applied}}</div>
+  </div>
+</mat-card>

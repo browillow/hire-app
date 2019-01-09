@@ -1,7 +1,7 @@
-<p>
-  dashboard-view works!
-</p>
-
-<div *ngFor="let app of applications">
-    <app-application-card [application]="app"></app-application-card>
+<div class="View DashboardView">
+    <div *ngFor="let app of applications" class="DashboardView-appCardContainer">
+        <app-application-card [application]="app"></app-application-card>
+    </div>
 </div>
+
+
