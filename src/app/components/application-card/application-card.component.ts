@@ -1,6 +1,7 @@
 import { Component, OnInit, Injectable, Input } from '@angular/core';
 import { Application } from '../../models/application.model';
 import { ApplicationService } from '../../services/application.service';
+import { Experience } from '../../enums/experience.enum';
 
 @Injectable()
 @Component({
@@ -11,12 +12,14 @@ import { ApplicationService } from '../../services/application.service';
 export class ApplicationCardComponent implements OnInit {
 
   @Input('application') application: Application = null;
+  experience: string;
 
   constructor(
     private applicationService: ApplicationService
   ) { }
 
   ngOnInit() {
+    this.experience = Experience[this.application.experience];
   }
 
   toggleBookmark($event: MouseEvent) {
