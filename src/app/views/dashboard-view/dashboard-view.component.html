@@ -1,4 +1,19 @@
 <div class="View DashboardView">
+    <div class="DashboardView-resultTotalMessage">HireHelper helps you manage the job applications in your hiring pipeline.</div>
+    <mat-divider></mat-divider>
+    <div class="DashboardView-sortPicker">
+        <div class="DashboardView-sortPickerLabel">Order by: </div>
+        <div class="DashboardView-sortPickerSelectContainer">
+            <mat-form-field>
+                <mat-select [(value)]="selectedSortMethod" (selectionChange)="sortApplications()">
+                    <mat-option [value]="sortMethod" *ngFor="let sortMethod of sortMethods">{{sortMethod}}</mat-option>
+                </mat-select>
+            </mat-form-field>
+        </div>
+    </div>
+    <mat-divider></mat-divider>
+    <div class="DashboardView-resultTotalMessage">Showing you {{applications.length}} of {{applications.length}} job applications from your pipeline</div>
+    <mat-divider></mat-divider>
     <div *ngFor="let app of applications" class="DashboardView-appCardContainer">
         <app-application-card [application]="app"></app-application-card>
     </div>

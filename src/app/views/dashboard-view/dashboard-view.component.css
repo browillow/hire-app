@@ -1,3 +1,33 @@
+.DashboardView-sortPicker {
+    width: 100%;
+    display: flex;
+}
+
+.DashboardView-sortPickerLabel {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    margin-right: 15px;
+}
+
+.DashboardView-sortPickerSelectContainer {
+    flex-grow: 1;
+    display: flex;
+    align-content: center;
+    align-items: center;
+}
+
+.DashboardView-resultTotalMessage {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+
 .DashboardView-appCardContainer {
     margin-top: 20px;
 }
