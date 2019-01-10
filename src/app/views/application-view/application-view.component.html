@@ -1,6 +1,15 @@
 <div class="View ApplicationView">
-    <div class="ApplicationView-dashboardButton">
-        <button mat-raised-button color="primary" (click)="goToDashboard()">Back to Dashboard</button>
+    <div class="ApplicationView-buttons">
+        <div class="ApplicationView-dashboardButton">
+            <button class="ApplicationView-button" mat-raised-button color="primary" (click)="goToDashboard()">Back to Dashboard</button>
+        </div>
+        <div class="ApplicationView-bookmarkButton">
+            <button class="ApplicationView-button" mat-raised-button (click)="toggleBookmark()" *ngIf="application">
+                    <mat-icon class="ApplicationView-bookmarkIcon">bookmark{{application.bookmarked ? '' : '_border'}}</mat-icon>
+                    Bookmark{{application.bookmarked ? 'ed' : ''}}
+            </button>
+        </div>
+        
     </div>
     <div class="ApplicationView-cardContainer">
         <mat-card class="ApplicationView-card" *ngIf="application">

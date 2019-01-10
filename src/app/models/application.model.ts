@@ -10,5 +10,5 @@ export class Application {
     public experience: Experience;
     public availability: {[day: string]: Availability};
     public questions: Question[];
-    public favorite: boolean;
+    public bookmarked: boolean;
 }

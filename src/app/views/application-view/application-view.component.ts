@@ -49,4 +49,12 @@ export class ApplicationViewComponent implements OnInit, OnDestroy {
     this.paramsSubscription.unsubscribe();
   }
 
+  toggleBookmark() {
+    this.application.bookmarked = !this.application.bookmarked;
+    if (this.application.bookmarked)
+      this.applicationService.bookmarkApplication(this.application.id);
+    else 
+      this.applicationService.unBookmarkApplication(this.application.id);
+  }
+
 }

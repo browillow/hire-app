@@ -1,8 +1,8 @@
 <mat-card (click)="viewApplication()" class="ApplicationCard">
   <div class="ApplicationCard-topRow">
     <div>{{application.name}}</div>
-    <div class="ApplicationCard-bookmarkContainer">
-        <mat-icon>favorite_border</mat-icon>
+    <div class="ApplicationCard-bookmarkContainer" (click)="toggleBookmark($event)">
+        <mat-icon>bookmark{{application.bookmarked ? '' : '_border'}}</mat-icon>
     </div>
   </div>
   <mat-divider [inset]="true" [style.backgroundColor]></mat-divider>

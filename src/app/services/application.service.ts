@@ -8,7 +8,8 @@ import { map, tap} from 'rxjs/operators';
 export class ApplicationService {
 
     private baseUrl: string;
-    private applications: Application[] = [];
+    private applications: Application[] = null;
+    private bookmarksStorageKey = "bookmarks";
 
     constructor(private http: HttpClient) {
         let port = (location.port !== "") ? `:${location.port}` : '';
@@ -16,16 +17,22 @@ export class ApplicationService {
     }
 
     getApplications() {
-        return this.http.get<Application[]>(`${this.baseUrl}/assets/applications.json`)
-            .pipe(
-                map(applications => this.rememberBookmarks(applications)),
-                tap(applications => this.cacheApplications(applications))
-            );
-    }
-
-    rememberBookmarks(applications: Application[]): Application[] {
-        // TODO: Look in local storage for the ids of applications that have been bookmarked
-        return applications;
+        let appsObservable = new Observable<Application[]>((observer) => {
+            if (this.applications != null) {
+                observer.next(this.applications);
+                observer.complete();
+            } else {
+                this.http.get<Application[]>(`${this.baseUrl}/assets/applications.json`)
+                .pipe(
+                    map(applications => this.rememberBookmarks(applications)),
+                    tap(applications => this.cacheApplications(applications))
+                ).subscribe(applications => {
+                    observer.next(applications);
+                    observer.complete();
+                });
+            }
+        });
+        return appsObservable;
     }
 
     cacheApplications(applications: Application[]) {
@@ -48,7 +55,30 @@ export class ApplicationService {
         return appObservable;
     }
 
-    bookmarkApplication(id: number) {
-        // TODO: Save application id in bookmarks collection in local storage
+    rememberBookmarks(applications: Application[]): Application[] {
+        let bookmarksJson = localStorage.getItem(this.bookmarksStorageKey);
+        if (bookmarksJson != null) {
+            let bookmarks: number[] = JSON.parse(bookmarksJson);
+            applications.forEach(application => {
+                application.bookmarked = bookmarks.indexOf(application.id) > -1;
+            });
+        }
+        return applications;
+    }
+
+    bookmarkApplication(applicationId: number) {
+        let bookmarksJson = localStorage.getItem(this.bookmarksStorageKey);
+        let bookmarks: number[] = (bookmarksJson != null) ? JSON.parse(bookmarksJson) : [];
+        if (bookmarks.indexOf(applicationId) === -1) {
+            bookmarks.push(applicationId);
+            localStorage.setItem(this.bookmarksStorageKey, JSON.stringify(bookmarks));
+        }
+    }
+
+    unBookmarkApplication(applicationId: number) {
+        let bookmarksJson = localStorage.getItem(this.bookmarksStorageKey);
+        let bookmarks: number[] = (bookmarksJson != null) ? JSON.parse(bookmarksJson) : [];
+        bookmarks = bookmarks.filter(id => id !== applicationId);
+        localStorage.setItem(this.bookmarksStorageKey, JSON.stringify(bookmarks));
     }
 }

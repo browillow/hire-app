@@ -6,10 +6,6 @@
     justify-content: center;
 }
 
-.ViewContainer {
-    width: 95%;
-}
-
 .AppTitle {
     width: 100%;
     display: flex;
@@ -23,4 +19,38 @@
     font-family: 'Dancing Script', cursive;
     font-size: 40px;
     color: darkblue;
+}
+
+.ViewContainer {
+    width: 95%;
+}
+
+@media only screen and (min-width: 450px) {
+    .ViewContainer {
+        width: 70%;
+    }
+}
+
+@media only screen and (min-width: 600px) {
+    .ViewContainer {
+        width: 55%;
+    }
+}
+
+@media only screen and (min-width: 700px) {
+    .ViewContainer {
+        width: 50%;
+    }
+}
+
+@media only screen and (min-width: 900px) {
+    .ViewContainer {
+        width: 35%;
+    }
+}
+
+@media only screen and (min-width: 1400px) {
+    .ViewContainer {
+        width: 30%;
+    }
 }

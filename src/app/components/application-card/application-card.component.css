@@ -30,7 +30,12 @@
     align-items: center;
     justify-content: center;
     min-width: 50px;
-    color: #5fb7ce;
+    min-height: 40px;
+    color: #0fcfff;
+}
+
+.ApplicationCard-bookmarkContainer > .mat-icon:hover {
+    color: #85e7ff;
 }
 
 .ApplicationCard-bottomRow {
