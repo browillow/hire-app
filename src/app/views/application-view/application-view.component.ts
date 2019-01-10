@@ -31,14 +31,20 @@ export class ApplicationViewComponent implements OnInit, OnDestroy {
       this.applicationService.getApplication(applicationId).subscribe(application => {
         this.application = application;
         this.experience = Experience[application.experience];
-        Object.keys(application.availability).forEach(day => {
-          this.availability.push({
-            day: Day[day],
-            availability: Availability[application.availability[day]]
-          });
-        });
+        this.availability = this.getAvailabilityCollection(application);
       });
     });
+  }
+
+  getAvailabilityCollection(application: Application): { day: string, availability: string }[] {
+    let availability = [];
+    Object.keys(application.availability).forEach(day => {
+      availability.push({
+        day: Day[day],
+        availability: Availability[application.availability[day]]
+      });
+    });
+    return availability;
   }
 
   goToDashboard() {

@@ -3,15 +3,18 @@ import { HttpClient } from '@angular/common/http';
 import { Application } from '../models/application.model';
 import { Observable } from 'rxjs';
 import { map, tap} from 'rxjs/operators';
+import { StorageService } from './storage.service';
 
 @Injectable()
 export class ApplicationService {
 
     private baseUrl: string;
     private applications: Application[] = null;
-    private bookmarksStorageKey = "bookmarks";
 
-    constructor(private http: HttpClient) {
+    constructor(
+        private http: HttpClient,
+        private storageService: StorageService
+    ) {
         let port = (location.port !== "") ? `:${location.port}` : '';
         this.baseUrl = `${window.location.protocol}//${window.location.hostname}${port}`;
     }
@@ -56,9 +59,8 @@ export class ApplicationService {
     }
 
     rememberBookmarks(applications: Application[]): Application[] {
-        let bookmarksJson = localStorage.getItem(this.bookmarksStorageKey);
-        if (bookmarksJson != null) {
-            let bookmarks: number[] = JSON.parse(bookmarksJson);
+        let bookmarks = this.storageService.getBookmarks();
+        if (bookmarks.length > 0) {
             applications.forEach(application => {
                 application.bookmarked = bookmarks.indexOf(application.id) > -1;
             });
@@ -67,18 +69,16 @@ export class ApplicationService {
     }
 
     bookmarkApplication(applicationId: number) {
-        let bookmarksJson = localStorage.getItem(this.bookmarksStorageKey);
-        let bookmarks: number[] = (bookmarksJson != null) ? JSON.parse(bookmarksJson) : [];
+        let bookmarks = this.storageService.getBookmarks();
         if (bookmarks.indexOf(applicationId) === -1) {
             bookmarks.push(applicationId);
-            localStorage.setItem(this.bookmarksStorageKey, JSON.stringify(bookmarks));
+            this.storageService.setBookmarks(bookmarks);
         }
     }
 
     unBookmarkApplication(applicationId: number) {
-        let bookmarksJson = localStorage.getItem(this.bookmarksStorageKey);
-        let bookmarks: number[] = (bookmarksJson != null) ? JSON.parse(bookmarksJson) : [];
+        let bookmarks = this.storageService.getBookmarks();
         bookmarks = bookmarks.filter(id => id !== applicationId);
-        localStorage.setItem(this.bookmarksStorageKey, JSON.stringify(bookmarks));
+        this.storageService.setBookmarks(bookmarks);
     }
 }

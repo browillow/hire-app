@@ -1,21 +1,30 @@
 <div class="View DashboardView">
     <div class="DashboardView-resultTotalMessage">HireHelper helps you manage the job applications in your hiring pipeline.</div>
     <mat-divider></mat-divider>
-    <div class="DashboardView-sortPicker">
-        <div class="DashboardView-sortPickerLabel">Order by: </div>
-        <div class="DashboardView-sortPickerSelectContainer">
-            <mat-form-field>
-                <mat-select [(value)]="selectedSortMethod" (selectionChange)="sortApplications()">
-                    <mat-option [value]="sortMethod" *ngFor="let sortMethod of sortMethods">{{sortMethod}}</mat-option>
-                </mat-select>
-            </mat-form-field>
-        </div>
-    </div>
+    <div class="DashboardView-resultControlsTitle">Result Controls</div>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+            <mat-panel-title>Order by</mat-panel-title>
+            <mat-panel-description>{{selectedSortMethod}}</mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-radio-group class="DashboardView-sortingMethodRadioGroup" [(ngModel)]="selectedSortMethod" (change)="sortApplications()">
+            <mat-radio-button class="DashboardView-sortingMethodRadioButton" *ngFor="let sortMethod of sortMethods" [value]="sortMethod">
+                      {{sortMethod}}
+            </mat-radio-button>
+        </mat-radio-group>
+    </mat-expansion-panel>
+    <mat-expansion-panel>
+        <mat-expansion-panel-header>
+          <mat-panel-title>Filters</mat-panel-title>
+          <mat-panel-description>{{showOnlyBookmarks ? 'Only showing bookmarks' : 'No filters applied'}}</mat-panel-description>
+        </mat-expansion-panel-header>
+        <mat-checkbox [(ngModel)]="showOnlyBookmarks" (change)="applyFilters()">Only show bookmarked</mat-checkbox>
+    </mat-expansion-panel>
     <mat-divider></mat-divider>
-    <div class="DashboardView-resultTotalMessage">Showing you {{applications.length}} of {{applications.length}} job applications from your pipeline</div>
+    <div class="DashboardView-resultTotalMessage">Showing you {{applications.length}} of {{allApplications.length}} job applications from your pipeline</div>
     <mat-divider></mat-divider>
     <div *ngFor="let app of applications" class="DashboardView-appCardContainer">
-        <app-application-card [application]="app"></app-application-card>
+        <app-application-card [application]="app" (click)="viewApplication(app.id)" ></app-application-card>
     </div>
 </div>
 

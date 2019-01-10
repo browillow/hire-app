@@ -1,21 +1,22 @@
-.DashboardView-sortPicker {
-    width: 100%;
-    display: flex;
+.DashboardView > mat-expansion-panel {
+    margin-top: 10px;
 }
 
-.DashboardView-sortPickerLabel {
+.DashboardView-resultControlsTitle {
     display: flex;
     align-content: center;
     align-items: center;
     justify-content: center;
-    margin-right: 15px;
+    margin-top: 15px;
 }
 
-.DashboardView-sortPickerSelectContainer {
-    flex-grow: 1;
-    display: flex;
-    align-content: center;
-    align-items: center;
+.DashboardView-sortingMethodRadioGroup {
+    display: inline-flex;
+    flex-direction: column;
+}
+
+.DashboardView-sortingMethodRadioButton {
+    margin: 15px;
 }
 
 .DashboardView-resultTotalMessage {
@@ -26,7 +27,6 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
-
 
 .DashboardView-appCardContainer {
     margin-top: 20px;
