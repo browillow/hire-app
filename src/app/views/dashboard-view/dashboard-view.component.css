@@ -2,6 +2,14 @@
     margin-top: 10px;
 }
 
+.DashboardView-resultTotalMessage {
+    display: flex;
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+
 .DashboardView-resultControlsTitle {
     display: flex;
     align-content: center;
